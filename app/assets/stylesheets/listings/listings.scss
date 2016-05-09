@@ -1,0 +1,46 @@
+ul {
+  list-style: none;
+  padding:0;
+}
+
+.cb-slideshow,
+.cb-slideshow:after { 
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+}
+.cb-slideshow:after { 
+    content: '';
+    background: transparent url(pattern.png) repeat top left; 
+}
+
+.cb-slideshow li {
+    opacity: 0;
+    
+    img { 
+        position: absolute;
+        top: 0px;
+        color: transparent;
+    }
+    
+    div { 
+        z-index: 1000;
+        position: fixed;
+        bottom: 30px;
+        left: 0px;
+        width: 100%;
+        text-align: center;
+        color: #ccc;
+        
+        h3 { 
+            font-family: 'Oswald';
+            font-weight: 300;
+            font-size: 100px;
+            padding: 0;
+            line-height: 100px; 
+        }
+        
+    }
+}
