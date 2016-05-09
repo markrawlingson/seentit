@@ -3,12 +3,26 @@
 <head>
   <title>Seentit</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <link href='https://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= content_for?(:head) ? yield(:head) : "" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+<header>
+  <div>
+    <a href="/">FRONT</a> - 
+    <a href="/r/all">ALL</a> - 
+    <a href="/r/random">RANDOM</a> | 
+<% @subreddits.each do |subreddit| %>
+  <%= link_to subreddit[:data][:url].sub("/r/", "").sub("/", "").upcase, subreddit[:data][:url].downcase %>
+  <%= "-" unless subreddit == @subreddits.last %>
+<% end %>
+    
+  </div>
+  <%= link_to "Login", "/", :class => "btn btn-success" %>
+</header>
 <%= yield %>
-
+<%= content_for?(:foot) ? yield(:foot) : "" %>
 </body>
 </html>
