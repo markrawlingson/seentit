@@ -1,0 +1,14 @@
+<ul class="cb-slideshow">
+<%
+    @listings.each do |listing|
+        next if listing.stickied
+        image = listing.preview[:images].first[:source]
+%>
+    <li>
+        <span style="background-image: url(<%= image[:url] %>)"></span>
+        <div>
+            <h3><%= listing.title %></h3>
+        </div>
+    </li>
+<% end %>
+</ul>

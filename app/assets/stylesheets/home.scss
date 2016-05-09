@@ -1,0 +1,73 @@
+ul {
+  list-style: none;
+}
+
+.cb-slideshow,
+.cb-slideshow:after { 
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+}
+.cb-slideshow:after { 
+    content: '';
+    background: transparent url(pattern.png) repeat top left; 
+}
+
+.cb-slideshow li {
+    opacity:0;
+    z-index: 0;
+    animation: imageAnimation 36s linear infinite 0s; 
+}
+
+@mixin generate-animation-delays($n, $times, $i:0) {
+  .cb-slideshow li:nth-child(#{$i+1}) {
+    animation-delay: #{$n*$i}s;
+  }
+  $i: $i + 1;
+  @if $i <= $times {
+      @include generate-animation-delays($n, $times, $i)
+  }
+
+}
+
+@include generate-animation-delays(6, 6);
+
+.cb-slideshow li span { 
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    color: transparent;
+    background-size: 1920px 100%;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
+
+.cb-slideshow li div { 
+    z-index: 1000;
+    position: absolute;
+    bottom: 30px;
+    left: 0px;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+}
+
+.cb-slideshow li div h3 { 
+    font-family: 'Oswald';
+    font-weight: 300;
+    font-size: 100px;
+    padding: 0;
+    line-height: 100px; 
+}
+
+@keyframes imageAnimation { 
+    0% { opacity: 0; animation-timing-function: ease-in; }
+    8% { opacity: 1; animation-timing-function: ease-out; }
+    17% { opacity: 1 }
+    25% { opacity: 0 }
+    100% { opacity: 0 }
+}
