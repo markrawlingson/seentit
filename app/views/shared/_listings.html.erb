@@ -1,7 +1,8 @@
 <ul class="cb-slideshow">
 <%
     @listings.each do |listing|
-        next if listing.stickied
+        next if listing.stickied or !listing.try(:preview)
+        
         image = listing.preview[:images].first[:source]
 %>
     <li>
