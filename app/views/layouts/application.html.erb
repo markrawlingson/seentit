@@ -19,9 +19,10 @@
   <%= link_to subreddit[:data][:url].sub("/r/", "").sub("/", "").upcase, subreddit[:data][:url].downcase %>
   <%= "-" unless subreddit == @subreddits.last %>
 <% end %>
-    
+    <span class="pull-right">
+      <%= link_to raw('<span class="glyphicon glyphicon-refresh"></span> Sync'), new_authorize_path, :target => '_blank' %>
+    </span>
   </div>
-  <%= link_to "Login", "/", :class => "btn btn-success" %>
 </header>
 <%= yield %>
 <%= content_for?(:foot) ? yield(:foot) : "" %>
